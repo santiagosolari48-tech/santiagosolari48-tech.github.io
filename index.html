@@ -283,13 +283,15 @@
 </div>
 
 <div id="main-container" class="container fileteado-active">
-  <!-- 🖼️ MARCOS DEL FILETEADO (Actualizado para 4 imágenes independientes) -->
+    <!-- 🖼️ MARCOS DEL FILETEADO (4 imágenes independientes) -->
     <img src="imagenes/fileteado.png" class="filete-corner corner-tl" alt="Fileteado Superior Izquierdo">
     <img src="imagenes/fileteado2.png" class="filete-corner corner-tr" alt="Fileteado Superior Derecho">
     <img src="imagenes/fileteado3.png" class="filete-corner corner-bl" alt="Fileteado Inferior Izquierdo">
     <img src="imagenes/fileteado4.png" class="filete-corner corner-br" alt="Fileteado Inferior Derecho">
+    
     <div id="progress-container" class="progress-bar"><div id="progress" class="progress"></div></div>
     
+    <!-- PANTALLA INICIAL -->
     <div id="screen-start">
         <div class="filete-subtitle">test de barrios</div>
         <h1>¿DE QUÉ BARRIO DE CABA SOS?</h1>
@@ -297,6 +299,7 @@
         <button class="btn btn-start" onclick="nextScreen('screen-gender')">Iniciar el Test</button>
     </div>
 
+    <!-- PANTALLA GÉNERO -->
     <div id="screen-gender" class="hidden">
         <h1 style="color: var(--text); text-shadow: none; font-family: 'Segoe UI', sans-serif;">¿CÓMO TE CONSIDERÁS?</h1>
         <p>Seleccioná tu opción para arrancar:</p>
@@ -304,11 +307,32 @@
         <button class="btn" onclick="setGender('piba')">Soy mujer 👧</button>
     </div>
 
+    <!-- PANTALLA DE PREGUNTAS (QUIZ) -->
     <div id="screen-quiz" class="hidden">
         <h1 id="question-text" style="color: var(--text); text-shadow: none; font-family: 'Segoe UI', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 25px;">Pregunta</h1>
         <div id="options-container"></div>
     </div>
 
+    <!-- 🚀 NUEVA PANTALLA DE REFREZCO DE ANUNCIOS (PASO INTERMEDIO) -->
+    <div id="screen-break" class="hidden">
+        <div class="filete-subtitle" id="break-subtitle">Paso 1 de 3 completado</div>
+        <h1 id="break-title" style="color: var(--filete-text-red); font-family: 'Georgia', serif;">¡VAS CUMPLIENDO CON LA MÍSTICA!</h1>
+        <p style="margin: 15px 0;">Venís perfilando bárbaro. Mientras el detector de porteñidad procesa esta tanda, mirá lo que se viene...</p>
+        
+        <!-- 💰 Bloque de AdSense clave para refrescarse -->
+        <div class="adsense-space">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7500426906784906"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+        
+        <button class="btn btn-start" style="margin-top: 20px;" onclick="continueQuiz()">Siguiente Tanda de Preguntas ➔</button>
+    </div>
+
+    <!-- PANTALLA CARGANDO -->
     <div id="screen-loading" class="hidden">
         <div class="loading-layout">
             <img class="loading-gif" src="imagenes/cargando-mate.gif" alt="Cebando Mate">
@@ -316,6 +340,7 @@
         </div>
     </div>
 
+    <!-- PANTALLA RESULTADO -->
     <div id="screen-result" class="hidden">
         <div class="result-layout">
             <div class="result-tag">test de barrios</div>
@@ -360,10 +385,30 @@
     </div>
 </section>
 
-<!-- 🍪 BANNER DE COOKIES (VUELTO A AGREGAR) -->
+<!-- 🍪 BANNER DE COOKIES -->
 <div id="cookie-banner" class="cookie-banner">
     <p>Utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación y mostrarte publicidad personalizada mediante el análisis de tus hábitos de navegación.</p>
     <button onclick="acceptCookies()">Aceptar todo</button>
+</div>
+
+<!-- 🛡️ PIE DE PÁGINA LEGAL OBLIGATORIO PARA GOOGLE ADSENSE -->
+<footer style="max-width: 500px; width: 90%; margin: 20px auto; padding: 20px 15px; background: rgba(30, 41, 59, 0.95); color: #f8fafc; border-radius: 16px; text-align: center; font-size: 12px; font-family: 'Segoe UI', Roboto, sans-serif; position: relative; z-index: 10;">
+    <p style="margin-bottom: 12px; font-weight: bold; color: #e2e8f0;">Test de Barrios CABA &copy; 2026 - Todos los derechos reservados</p>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <a href="#" onclick="abrirModalLegal('privacidad'); return false;" style="color: #38bdf8; text-decoration: none;">Política de Privacidad</a>
+        <span style="color: #64748b;">|</span>
+        <a href="#" onclick="abrirModalLegal('terminos'); return false;" style="color: #38bdf8; text-decoration: none;">Términos y Condiciones</a>
+        <span style="color: #64748b;">|</span>
+        <a href="#" onclick="abrirModalLegal('contacto'); return false;" style="color: #38bdf8; text-decoration: none;">Contacto</a>
+    </div>
+</footer>
+
+<!-- MODAL POPUP PARA MOSTRAR LOS LEGALES EN LA MISMA PÁGINA -->
+<div id="modalLegal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:10000; justify-content:center; align-items:center;">
+    <div style="background:#fff; color:#0f172a; padding:25px; border-radius:16px; max-width:450px; width:90%; max-height:80vh; overflow-y:auto; position:relative; font-family: 'Segoe UI', sans-serif;">
+        <button onclick="cerrarModalLegal()" style="position:absolute; right:15px; top:15px; border:none; background:#f1f5f9; border-radius:50%; width:30px; height:30px; font-size:16px; font-weight:bold; cursor:pointer; color:#334155;">✕</button>
+        <div id="contenidoModalLegal" style="text-align: left; font-size: 13px; line-height: 1.5; color: #334155;"></div>
+    </div>
 </div>
 
 <script>
@@ -512,6 +557,25 @@
     function acceptCookies() {
         localStorage.setItem('cookiesAceptadas', 'true');
         document.getElementById('cookie-banner').style.display = 'none';
+    }
+
+    /* 🛡️ SCRIPT PARA MODALES LEGALES */
+    function abrirModalLegal(tipo) {
+        const modal = document.getElementById('modalLegal');
+        const cont = document.getElementById('contenidoModalLegal');
+        
+        if(tipo === 'privacidad') {
+            cont.innerHTML = "<h3 style='margin-bottom:10px; color:#1e293b;'>Política de Privacidad</h3><p>Este sitio web utiliza cookies técnicas y de terceros para garantizar el correcto funcionamiento del cuestionario interactivo y mostrar publicidad relevante a través de Google AdSense.</p><p style='margin-top:8px;'>Al utilizar nuestro sitio, aceptás el uso de cookies para el análisis de tráfico y la personalización de anuncios conforme a las políticas de privacidad vigentes.</p>";
+        } else if(tipo === 'terminos') {
+            cont.innerHTML = "<h3 style='margin-bottom:10px; color:#1e293b;'>Términos y Condiciones</h3><p>El 'Test de Barrios de CABA' es un juego interactivo de entretenimiento basado en afinidad cultural con los distintos barrios de la Ciudad Autónoma de Buenos Aires.</p><p style='margin-top:8px;'>El uso de este sitio es completamente gratuito. El sitio no recopila ni almacena información personal ni sensible de los usuarios.</p>";
+        } else if(tipo === 'contacto') {
+            cont.innerHTML = "<h3 style='margin-bottom:10px; color:#1e293b;'>Contacto</h3><p>Si tenés consultas sobre este sitio, sugerencias o requerimientos técnicos, podés comunicarte vía correo electrónico a:</p><p style='margin-top:10px; font-weight:bold; color:#0284c7;'>santiagosolari48@gmail.com</p>";
+        }
+        modal.style.display = 'flex';
+    }
+
+    function cerrarModalLegal() {
+        document.getElementById('modalLegal').style.display = 'none';
     }
 </script>
 </body>
